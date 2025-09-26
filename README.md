@@ -18,7 +18,7 @@ Symmetrika is an AI-powered web application that preserves, recreates, and celeb
 
 1. **Clone the Repo**  
 ```bash
-git clone https://github.com/YOUR-USERNAME/symmetrika.git
+git clone https://github.com/QuantumCoderrr/symmetrika.git
 ```
 2. **Open the Page**  
 - Just open `index.html` in your web browser.
