@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symmetrika</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+    background: #fef6ec;
+    color: #2d2233;
+    font-family: 'Inter', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 34px 18px 50px;
+}
+h1 {
+    font-size: 2.3em;
+    margin-bottom: 7px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+.intro {
+    margin-bottom: 24px;
+    font-size: 1.19em;
+    color: #544657;
+}
+
+.btn, .secondary-btn {
+    padding: 12px 38px;
+    border-radius: 24px;
+    border: none;
+    font-size: 1.08em;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 10px 15px 10px 0;
+    transition: box-shadow .2s, background .2s, color .2s;
+    outline: none;
+    min-width: 140px;
+}
+.btn {
+    background: linear-gradient(90deg,#fd8753 30%,#ad43b1 110%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 2px 16px 0 #f5d0c7;
+}
+.btn:active, .btn:focus {
+    box-shadow: 0 2px 20px #e8d2fc;
+}
+.secondary-btn {
+    background: #fff;
+    color: #8650a8;
+    border: 2px solid #e9d3f2;
+    box-shadow: 0 2px 12px #f1eef8;
+}
+.secondary-btn:hover {
+    background: #e9d3f2;
+    color: #613a7e;
+}
+
+input[type="text"], textarea {
+    padding: 10px 15px;
+    border-radius: 12px;
+    border: 2px solid #e1cabd;
+    background: #fff7ef;
+    font-size: 1.05em;
+    margin-bottom: 12px;
+    outline: none;
+    transition: border-color 0.18s, box-shadow 0.18s;
+    box-shadow: 0 1px 6px #f7e5c2;
+}
+input[type="text"]:focus, textarea:focus {
+    border-color: #b85fec;
+    box-shadow: 0 2px 12px #e1bafd;
+}
+h4 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.section-title {
+    margin: 35px 0 20px;
+    font-size: 1.31em;
+    font-weight: 700;
+    letter-spacing: .02em;
+}
+.how-steps {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 36px;
+}
+.how-step {
+    background-color: white;
+    border-radius: 16px;
+    padding: 26px 30px;
+    text-align: center;
+    flex: 1;
+    box-shadow: 0 1px 4px 0 #fde1c0;
+}
+.how-step img {
+    width: 40px;
+    margin-bottom: 11px;
+}
+
+.live-demo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 54px;
+    margin-bottom: 35px;
+    justify-content: flex-start;
+    align-items: center;
+}
+.kolam-canvas-container {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 0 6px #eedfcb;
+    padding: 28px;
+    width: 420px;
+}
+.settings-panel {
+    min-width: 235px;
+    border-radius: 13px;
+    padding: 16px 18px 6px 10px;
+    background: #faf6ff;
+    box-shadow: 0 1px 8px #efeeee;
+    margin-top: 14px;
+}
+
+.settings-row {
+    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+}
+.settings-row label {
+    font-size: 1.11em;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #594b66;
+    letter-spacing: .01em;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin-bottom: 7px;
+    accent-color: #ad43b1;
+    height: 5px;
+}
+input[type="range"]:focus {
+    outline: 2px solid #ad43b1;
+}
+
+#symmetry {
+    width: 100%;
+    min-width: 120px;
+    max-width: 180px;
+    padding: 10px 32px 10px 16px;
+    font-size: 1.09em;
+    font-weight: 500;
+    background: #f7efe2;
+    color: #523e5a;
+    border: 2px solid #e6d8c7;
+    border-radius: 13px;
+    outline: none;
+    appearance: none;
+    margin-top: 3px;
+    margin-bottom: 0px;
+    box-shadow: 0 1px 7px #f2e3cb;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    background-image: url('image/svg+xml;charset=UTF-8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L8 10L12 6" stroke="%238e73b9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 18px 18px;
+}
+#symmetry:focus {
+    border-color: #ad43b1;
+    box-shadow: 0 0 0 2px #efd6fa;
+}
+#symmetry option {
+    background: #f7efe2;
+    color: #523e5a;
+}
+
+canvas {
+    border: 1.5px solid #e3b68c;
+    border-radius: 12px;
+    background: #fbf7ef;
+    display: block;
+    margin-bottom: 10px;
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 36px;
+    margin-top: 26px;
+    margin-bottom: 38px;
+    width: 100%;
+    justify-content: center;
+    padding: 0 2vw;
+}
+.gallery-item {
+    background: #fff5ea;
+    background-color: white;
+    border-radius: 24px;
+    width: 185px;     
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 18px #e1d1bf;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 13px;
+    transition: box-shadow .16s, transform .16s;
+    margin-bottom: 10px;
+}
+.gallery-item:hover {
+    box-shadow: 0 8px 30px #d6c2b2;
+    transform: translateY(-5px) scale(1.06);
+}
+.gallery-item img {
+    width: 94%;
+    height: 94%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    background: #fff7f0;
+    border-radius: 18px;
+}
+.upload-item {
+    background: #fff;
+    border: 2.2px dashed #dec1b2;
+    color: #ad9081;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+}
+
+@media(max-width:1200px){
+    .gallery-item, .upload-item { width: 150px; height: 120px;}
+    .container { max-width:96vw;}
+    .kolam-canvas-container { width: 96vw; max-width:350px;}
+}
+@media(max-width:900px){
+    .live-demo { flex-direction: column; gap: 18px; }
+    .gallery { gap: 20px; }
+    .gallery-item, .upload-item { width:115px;height:90px;padding:6px;}
+    .kolam-canvas-container { width: 98vw; max-width:265px;}
+    .settings-panel { min-width: 120px; }
+}
+@media(max-width:600px){
+    .container { padding: 9px 2vw;}
+    h1 { font-size: 1.17em;}
+    .gallery { gap: 8vw;}
+}
+input[type="range"]::-webkit-slider-thumb {
+    background: #ad43b1;
+    border-radius: 50%;
+    height: 18px;
+    width: 18px;
+    box-shadow: 0 2px 8px #c8a8d6;
+}
+input[type="range"]:focus::-webkit-slider-thumb {
+    border: 2px solid #ad43b1;
+}
+input[type="range"]::-moz-range-thumb {
+    background: #ad43b1;
+    border-radius: 50%;
+    height: 17px;
+    width: 17px;
+    box-shadow: 0 2px 8px #c8a8d6;
+}
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Symmetrika: The Kolam Generator</h1>
+        <div class="intro">
+            Preserve, recreate, and explore centuries-old Kolam designs through AI-powered technology.
+        </div>
+        <button class="btn" onclick="generateKolam()">Generate Kolam</button>
+        <button class="btn secondary-btn" onclick="scrollToGallery()">Explore Gallery</button>
+
+
+        <div class="section-title">How It Works</div>
+        <div class="how-steps">
+            <div class="how-step">
+                <img src="https://img.icons8.com/small/52/grid.png" alt="">
+                <div>Choose Grid Size & Symmetry</div>
+            </div>
+            <div class="how-step">
+                <img src="https://img.icons8.com/?size=100&id=61864&format=png&color=000000" alt="">
+                <div>Generate AI + Rule-based Kolam</div>
+            </div>
+            <div class="how-step">
+                <img src="https://img.icons8.com/small/52/export.png" alt="">
+                <div>Export & Share</div>
+            </div>
+        </div>
+
+        <div class="section-title">Live Kolam Generator Demo</div>
+        <div class="live-demo">
+            <div class="kolam-canvas-container">
+                <canvas id="kolamCanvas" width="350" height="350"></canvas>
+            </div>
+            <div class="settings-panel">
+                <div class="settings-row">
+                    <label for="gridSize">Grid Size</label>
+                    <input type="range" id="gridSize" min="6" max="18" value="7"/>
+                    <span id="gridSizeVal">7</span>
+                </div>
+                <div class="settings-row">
+                    <label for="complexity">Complexity</label>
+                    <input type="range" id="complexity" min="1" max="6" value="2"/>
+                    <span id="complexityVal">2</span>
+                </div>
+                <div class="settings-row">
+                    <label for="symmetry">Symmetry</label>
+                    <select id="symmetry">
+                        <option value="4">4-fold</option>
+                        <option value="6">6-fold</option>
+                        <option value="8" selected>8-fold</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 10px; margin-bottom: 8px;">
+  <input 
+    id="kolamPrompt" 
+    type="text" 
+    placeholder="Describe your Kolam (e.g., 8-fold, floral, complex)" 
+    style="flex:1; padding:10px; border-radius: 8px; border: 1.3px solid #cebbda;"
+  />
+  <button class="btn" onclick="handleAIPrompt()">A1 Rule Engine</button>
+</div>
+                <button class="btn secondary-btn" onclick="exportKolam()">Export as SVG / PNG</button>
+            </div>
+        </div>
+
+        <div class="section-title" id="communityGallery"><h4>Community Gallery</h4></div>
+<div class="gallery">
+    <div class="gallery-item"><img src="assets/kolam-1.png"/></div>
+    <div class="gallery-item"><img src="assets/kolam-2.png"/></div>
+    <div class="gallery-item"><img src="assets/kolam-3.png"/></div>
+    <div class="gallery-item upload-item" onclick="uploadKolam()">+<br/>Upload Your Kolam</div>
+</div>
+
+    </div>
+   
+    <script>
+        function quadraticBezier(p0, p1, p2, t) {
+            return [
+                (1-t)*(1-t)*p0[0] + 2*(1-t)*t*p1[0] + t*t*p2[0],
+                (1-t)*(1-t)*p0[1] + 2*(1-t)*t*p1[1] + t*t*p2[1]
+            ];
+        }
+
+        function drawKolam(ctx, gridN, complexity, symmetry) {
+            ctx.clearRect(0,0,350,350);
+            let cell = 350/gridN;
+            ctx.strokeStyle = "#beb1a3";
+            ctx.lineWidth = 0.8;
+            for(let x=0;x<=gridN;x++) {
+                ctx.beginPath();
+                ctx.moveTo(x*cell,0); ctx.lineTo(x*cell,350);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0,x*cell); ctx.lineTo(350,x*cell);
+                ctx.stroke();
+            }
+
+            ctx.save();
+            ctx.strokeStyle = "#ad43b1"; ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(20,350-20); ctx.lineTo(330,350-20); ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(20,350-20); ctx.lineTo(20,20); ctx.stroke();
+            ctx.restore();
+
+       
+            let center = [gridN/2,gridN/2];
+            let knots=[
+                [2,2],[gridN-3,2],[gridN-3,gridN-3],[2,gridN-3]
+            ];
+        
+            for(let i=1;i<=complexity;i++){
+                let frac=i/(complexity+1);
+                knots.push([2+frac*(gridN-5),2]);
+                knots.push([gridN-3,2+frac*(gridN-5)]);
+                knots.push([gridN-3-frac*(gridN-5),gridN-3]);
+                knots.push([2,gridN-3-frac*(gridN-5)]);
+            }
+            let controlPts=[
+                [2,gridN/3],[gridN/2,2],[gridN-3,gridN/3],[gridN-3,gridN/2],[gridN-3,gridN-3-gridN/3],[gridN/2,gridN-3],[2,gridN-3-gridN/3],[2,gridN/2]
+            ];
+      
+            let loopSets=[];
+            for(let s=0;s<symmetry;s++){
+                let theta=s*2*Math.PI/symmetry;
+                let rotKnots=knots.map(([x,y])=>{
+                    let dx=x-center[0],dy=y-center[1];
+                    let xx=center[0]+dx*Math.cos(theta)-dy*Math.sin(theta);
+                    let yy=center[1]+dx*Math.sin(theta)+dy*Math.cos(theta);
+                    return [xx,yy];
+                });
+                let rotCtrl=controlPts.map(([x,y])=>{
+                    let dx=x-center[0],dy=y-center[1];
+                    let xx=center[0]+dx*Math.cos(theta)-dy*Math.sin(theta);
+                    let yy=center[1]+dx*Math.sin(theta)+dy*Math.cos(theta);
+                    return [xx,yy];
+                });
+                loopSets.push({knots:rotKnots,controls:rotCtrl});
+            }
+
+            ctx.strokeStyle="#2d2233";
+            ctx.lineWidth=2.1;
+            loopSets.forEach(obj=>{
+                let {knots,controls}=obj;
+            
+                ctx.beginPath();
+                for(let i=0;i<knots.length;i++){
+                    let p0=knots[i],p2=knots[(i+1)%knots.length];
+                    let p1=controls[i%controls.length];
+                  
+                    let prevPixel=[
+                        p0[0]*cell, p0[1]*cell
+                    ];
+                    for(let tt=0;tt<=1.0;tt+=0.04){
+                        let pt=quadraticBezier(
+                            [p0[0]*cell,p0[1]*cell],
+                            [p1[0]*cell,p1[1]*cell],
+                            [p2[0]*cell,p2[1]*cell],
+                            tt
+                        );
+                        if(tt===0){
+                            ctx.moveTo(prevPixel[0],prevPixel[1]);
+                        }else{
+                            ctx.lineTo(pt[0],pt[1]);
+                        }
+                        prevPixel=pt;
+                    }
+                }
+                ctx.closePath();
+                ctx.stroke();
+            });
+
+ 
+            ctx.fillStyle="#3c2743";
+            loopSets.forEach(obj=>{
+                obj.knots.forEach(pt=>{
+                    ctx.beginPath();
+                    ctx.arc(pt[0]*cell,pt[1]*cell,5,0,2*Math.PI);
+                    ctx.fill();
+                });
+            });
+        }
+     
+function parseKolamPrompt(prompt) {
+    prompt = prompt.toLowerCase();
+    let gridN = 7, complexity = 2, symmetry = 8; 
+
+    if (prompt.includes('4-fold')) symmetry = 4;
+    if (prompt.includes('6-fold')) symmetry = 6;
+    if (prompt.includes('8-fold')) symmetry = 8;
+
+    if (prompt.includes('simple')) complexity = 1;
+    if (prompt.includes('intermediate')) complexity = 3;
+    if (prompt.includes('complex')) complexity = 6;
+    if (prompt.includes('medium')) complexity = 3;
+
+    if (prompt.includes('small')) gridN = 6;
+    if (prompt.includes('large')) gridN = 14;
+    if (prompt.includes('floral')) complexity = Math.max(complexity, 4);
+    if (prompt.match(/(\d+)[x×by ]+(\d+)/)) { 
+        gridN = parseInt(prompt.match(/(\d+)[x×by ]+(\d+)/)[1]);
+    }
+    if (prompt.match(/\b(\d{1,2})\s*grid\b/)) {
+        gridN = parseInt(prompt.match(/\b(\d{1,2})\s*grid\b/)[1]);
+    }
+    return {gridN, complexity, symmetry};
+}
+
+function handleAIPrompt() {
+    const prompt = document.getElementById('kolamPrompt').value.trim();
+    const params = parseKolamPrompt(prompt);
+
+    document.getElementById("gridSize").value = params.gridN;
+    document.getElementById("complexity").value = params.complexity;
+    document.getElementById("symmetry").value = params.symmetry;
+
+    generateKolam();
+}
+
+function scrollToGallery() {
+    const gallerySection = document.getElementById('communityGallery');
+    if (gallerySection) {
+        gallerySection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+        function generateKolam(){
+            let gridN=Number(document.getElementById("gridSize").value);
+            let complexity=Number(document.getElementById("complexity").value);
+            let symmetry=Number(document.getElementById("symmetry").value);
+            document.getElementById("gridSizeVal").textContent = gridN;
+            document.getElementById("complexityVal").textContent = complexity;
+            let ctx=document.getElementById("kolamCanvas").getContext("2d");
+            drawKolam(ctx, gridN, complexity, symmetry);
+        }
+
+        window.onload=generateKolam;
+        document.getElementById("gridSize").addEventListener("input",generateKolam);
+        document.getElementById("complexity").addEventListener("input",generateKolam);
+        document.getElementById("symmetry").addEventListener("change",generateKolam);
+
+        function uploadKolam(){ alert("Upload feature coming soon!");}
+        function exportKolam(){
+            const canvas = document.getElementById("kolamCanvas");
+            const link = document.createElement("a");
+            link.download = "kolam.png";
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+    </script>
+</body>
+</html>
